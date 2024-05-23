@@ -32,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "phonenumber_field",
+    'phonenumber_field',
     'app',
     
 ]
@@ -133,3 +134,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Usuario perzonalizado
 AUTH_USER_MODEL = 'app.Usuario'
+
+#Config Jazzmin
+JAZZMIN_UI_TWEAKS = {
+    "theme": "slate",
+    "dark_mode_theme": "darkly",
+}

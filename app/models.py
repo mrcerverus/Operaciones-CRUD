@@ -37,7 +37,7 @@ class Region(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"Region: {self.name}"
 
 
 class Comuna(models.Model):
@@ -45,7 +45,7 @@ class Comuna(models.Model):
     region = models.ForeignKey(Region, verbose_name="region", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name} - Region: {self.region.name}"
 
 
 class Usuario(AbstractUser):
@@ -64,7 +64,7 @@ class Usuario(AbstractUser):
     tipo_user = models.CharField(max_length=20, choices=TIPO_USER_CHOICES, null=False, blank=False)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} - {self.rut} - {self.tipo_user}"
 
 
 class Inmueble(models.Model):
@@ -99,3 +99,18 @@ class Imagen(models.Model):
 
     def __str__(self):
         return f"Imagen de {self.inmueble.nombre}"
+
+class SolicitudArriendo(models.Model):
+    TIPO_ESTADO_CHOICES = [
+        ('PENDIENTE','Pendiente'),
+        ('ACEPTADO','Aceptado'),
+        ('RECHAZADO','Rechazado'),
+    ]
+
+    arrendatario = models.ForeignKey(Usuario, verbose_name='Usuario', on_delete=models.CASCADE)
+    inmueble = models.ForeignKey(Inmueble, on_delete=models.CASCADE)
+    mensaje = models.TextField(blank=True)
+    estado = models.CharField(choices=TIPO_ESTADO_CHOICES, default='Pendiente')
+
+    def __str__(self):
+        return f"Solicitud de {self.inmueble.nombre} por {self.arrendatario.first_name} {self.arrendatario.last_name} "
