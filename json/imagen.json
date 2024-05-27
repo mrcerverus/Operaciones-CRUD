@@ -1,0 +1,10 @@
+[
+    {
+        "model": "app.imagen",
+        "pk": 1,
+        "fields": {
+            "inmueble": 1,
+            "imagen": "inmuebles/2024/05/27/up_casa.jpg"
+        }
+    }
+]

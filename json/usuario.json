@@ -1,0 +1,46 @@
+[
+    {
+        "model": "app.usuario",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$uMITsLtIFxKLofPVpv5VMq$rUSbjmH6kdecHyxYVQLXoSi+o3WUojCIYyadmrzJjhU=",
+            "last_login": "2024-05-27T15:32:18.654Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-05-23T19:03:57.498Z",
+            "rut": "",
+            "direccion": "",
+            "telefono": "",
+            "tipo_user": "",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "app.usuario",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$p5MyiVaQNc3LTjeLwtUr2O$5Hx5y2EWBwjBj7KGxTpMoD3L1v+gs8ZV5BtVC8okDPs=",
+            "last_login": "2024-05-24T22:27:09.152Z",
+            "is_superuser": false,
+            "username": "anita",
+            "first_name": "Ana",
+            "last_name": "Carrillo Vasquez",
+            "email": "ana@correo.cl",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-05-24T01:04:25.879Z",
+            "rut": "9163488-0",
+            "direccion": "San Francisco de asis 8028",
+            "telefono": "+56973023059",
+            "tipo_user": "ARRENDADOR",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

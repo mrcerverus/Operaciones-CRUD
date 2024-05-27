@@ -1,0 +1,24 @@
+[
+    {
+        "model": "app.inmueble",
+        "pk": 1,
+        "fields": {
+            "nombre": "Casa Up",
+            "descripcion": "Casa dise�o pelicula UP - Pixar Disney",
+            "m2_construidos": 120.0,
+            "m2_totales": 200.0,
+            "cantidad_estacionamientos": 2,
+            "cantidad_habitaciones": 3,
+            "cantidad_banos": 2,
+            "direccion": "Calle Siempre Viva 123",
+            "comuna": 1,
+            "tipo_inmueble": "CASA",
+            "precio_mensual_arriendo": "700000.00",
+            "activo": true,
+            "fecha_publicacion": "2024-05-27T15:38:53.204Z",
+            "user": [
+                2
+            ]
+        }
+    }
+]

@@ -1,0 +1,114 @@
+[
+    {
+        "model": "app.region",
+        "pk": 1,
+        "fields": {
+            "name": "de Arica y Parinacota"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 2,
+        "fields": {
+            "name": "de Tarapacá"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 3,
+        "fields": {
+            "name": "de Antofagasta"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 4,
+        "fields": {
+            "name": "de Atacama"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 5,
+        "fields": {
+            "name": "de Coquimbo"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 6,
+        "fields": {
+            "name": "de Valparaíso"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 7,
+        "fields": {
+            "name": "del Libertador General Bernardo O'Higgins"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 8,
+        "fields": {
+            "name": "del Maule"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 9,
+        "fields": {
+            "name": "de Ñuble"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 10,
+        "fields": {
+            "name": "del Biobío"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 11,
+        "fields": {
+            "name": "de La Araucanía"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 12,
+        "fields": {
+            "name": "de Los Ríos"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 13,
+        "fields": {
+            "name": "de Los Lagos"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 14,
+        "fields": {
+            "name": "de Aysén del General Carlos Ibáñez del Campo"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 15,
+        "fields": {
+            "name": "de Magallanes y de la Antártica Chilena"
+        }
+    },
+    {
+        "model": "app.region",
+        "pk": 16,
+        "fields": {
+            "name": "Metropolitana de Santiago"
+        }
+    }
+]
