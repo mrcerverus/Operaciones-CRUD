@@ -1,0 +1,3 @@
+('Casa Up', 'Casa diseno pelicula UP - Pixar Disney', 'La Florida', 'Metropolitana de Santiago')
+('Gotham', 'Departamento en Gotham City, dueno Bruce Wane', 'Providencia', 'Metropolitana de Santiago')
+('Campo - Valley Toon', 'Parcela de agrado para caballos', 'Isla de Maipo', 'Metropolitana de Santiago')

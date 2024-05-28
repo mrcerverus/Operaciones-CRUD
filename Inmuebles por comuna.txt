@@ -1,0 +1,3 @@
+('Casa Up', 'Casa diseno pelicula UP - Pixar Disney', 'La Florida')
+('Gotham', 'Departamento en Gotham City, dueno Bruce Wane', 'Providencia')
+('Campo - Valley Toon', 'Parcela de agrado para caballos', 'Isla de Maipo')
