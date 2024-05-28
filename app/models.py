@@ -37,7 +37,7 @@ class Region(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"Region: {self.name}"
+        return f"Region {self.name}"
 
 
 class Comuna(models.Model):
@@ -45,7 +45,7 @@ class Comuna(models.Model):
     region = models.ForeignKey(Region, verbose_name="region", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name} - Region: {self.region.name}"
+        return f"{self.name} - Region {self.region.name}"
 
 
 class Usuario(AbstractUser):
@@ -90,7 +90,7 @@ class Inmueble(models.Model):
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Nombre propiedad: {self.nombre} / m2 Contruidos: {self.m2_construidos} / m2 Totales: {self.m2_totales} / Fecha Publicacion: {self.fecha_publicacion}"
+        return f"Nombre propiedad: {self.nombre} / Fecha Publicacion: {self.fecha_publicacion}"
 
 
 class Imagen(models.Model):

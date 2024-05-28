@@ -7,8 +7,6 @@ admin.site.index_title = 'Panel De Control'
 admin.site.site_title = 'Arriendos'
 
 class UserAdmin(UserAdmin):
-    #add_form = UserAdmin
-    #form = UserAdmin
     resource_class = Usuario
     list_display = ['username','rut','first_name','last_name','email', 'tipo_user', 'is_staff']
     fieldsets = UserAdmin.fieldsets + (

@@ -17,6 +17,50 @@
             "activo": true,
             "fecha_publicacion": "2024-05-27T15:38:53.204Z",
             "user": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "app.inmueble",
+        "pk": 2,
+        "fields": {
+            "nombre": "Gotham",
+            "descripcion": "Departamento en Gotham City, dueno Bruce Wane",
+            "m2_construidos": 120.0,
+            "m2_totales": 200.0,
+            "cantidad_estacionamientos": 2,
+            "cantidad_habitaciones": 4,
+            "cantidad_banos": 2,
+            "direccion": "Calle Siempre Viva 1050",
+            "comuna": 2,
+            "tipo_inmueble": "DEPARTAMENTO",
+            "precio_mensual_arriendo": "1000000.00",
+            "activo": true,
+            "fecha_publicacion": "2024-05-27T15:38:53.204Z",
+            "user": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "app.inmueble",
+        "pk": 3,
+        "fields": {
+            "nombre": "Campo - Valley Toon",
+            "descripcion": "Parcela de agrado para caballos",
+            "m2_construidos": 120.0,
+            "m2_totales": 200.0,
+            "cantidad_estacionamientos": 4,
+            "cantidad_habitaciones": 8,
+            "cantidad_banos": 2,
+            "direccion": "Calle Falsa 123",
+            "comuna": 5,
+            "tipo_inmueble": "PARCELA",
+            "precio_mensual_arriendo": "1500000.00",
+            "activo": true,
+            "fecha_publicacion": "2024-05-27T15:38:53.204Z",
+            "user": [
                 2
             ]
         }
