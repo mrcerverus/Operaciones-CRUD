@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from app.views import index, register, welcome
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='indice'),
@@ -27,3 +30,6 @@ urlpatterns = [
     #path('contacto/', contacto_view, name='contacto'),
     #path('success/', TemplateView.as_view(template_name='success.html'), name='success'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
