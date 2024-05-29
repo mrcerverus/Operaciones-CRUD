@@ -88,17 +88,11 @@ class Inmueble(models.Model):
     user = models.ManyToManyField("Usuario", verbose_name="Usuario")
     activo = models.BooleanField(default=True, null=False, blank=False)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
+    imagen = models.ImageField(upload_to='media/', null=True, blank=True)
 
     def __str__(self):
         return f"Nombre propiedad: {self.nombre} / Fecha Publicacion: {self.fecha_publicacion}"
 
-
-class Imagen(models.Model):
-    inmueble = models.ForeignKey("Inmueble", verbose_name="Inmueble", on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='inmuebles/%Y/%m/%d', null=True, blank=True)
-
-    def __str__(self):
-        return f"Imagen de {self.inmueble.nombre}"
 
 class SolicitudArriendo(models.Model):
     TIPO_ESTADO_CHOICES = [

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Usuario, Imagen, Inmueble, Region, Comuna, SolicitudArriendo
+from app.models import Usuario, Inmueble, Region, Comuna, SolicitudArriendo
 from django.contrib.auth.admin import UserAdmin
 
 admin.site.site_header = 'Administracion Sitio Arriendos'
@@ -18,7 +18,6 @@ class UserAdmin(UserAdmin):
 
 admin.site.register(Usuario, UserAdmin)
 admin.site.register(Inmueble)
-admin.site.register(Imagen)
 admin.site.register(Region)
 admin.site.register(Comuna)
 admin.site.register(SolicitudArriendo)

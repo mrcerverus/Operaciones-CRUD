@@ -3,21 +3,11 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
-from app.models import Inmueble
+from app.models import Inmueble, Comuna, Region
 
 # Create your views here.
 def index(request):
     return render(request,'index.html', {})
-
-""" def contacto_view(request):
-    if request.method == 'POST':
-        form = ContactoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('success')
-    else:
-        form = ContactoForm()
-    return render(request, 'contacto_form.html', {'form': form}) """
 
 def register(request):
     data = {
@@ -38,8 +28,14 @@ def register(request):
 
 @login_required
 def welcome(request):
-    #flanes_publicos = Flan.objects.filter(is_private=True)
-    return render(request, 'welcome.html', {})
+    inmuebles = Inmueble.objects.all()
+    comunas = Comuna.objects.all()
+    regiones = Region.objects.all()
+    return render(request, 'welcome.html', {
+        'inmuebles':  inmuebles, 
+        'comunas': comunas,
+        'regiones': regiones,
+        })
 
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
