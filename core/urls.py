@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import index, register, welcome
+from app.views import index, register, welcome, actualizar_inmueble, crear_inmueble, eliminar_inmueble, detalle_inmueble
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,9 +27,13 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('bienvenido/', welcome, name='bienvenido'),
     path('accounts/', include('django.contrib.auth.urls')),
-    #path('contacto/', contacto_view, name='contacto'),
-    #path('success/', TemplateView.as_view(template_name='success.html'), name='success'),
+    path('inmueble_detalle/', detalle_inmueble , name='detalle_inmueble'),
+    path('inmueble_carga/', crear_inmueble, name='cargar_inmueble'),
+    path('inmueble_editar/', actualizar_inmueble, name='editar_inmueble'),
+    path('inmueble_eliminar/', eliminar_inmueble, name='eliminar_inmueble'),
+
 ]
 
+#para cargar imagenes desde base de datos
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
