@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$600000$Wdk5mqkl7q2b1rmxYnonJD$BHeJjx3/53Uu++OsXALSuPGdUeVSdS7tWbTUXQy0y0w=",
-            "last_login": "2024-05-25T14:26:15.989Z",
+            "last_login": "2024-05-31T02:46:54.892Z",
             "is_superuser": true,
             "username": "admin",
             "first_name": "Ariel",
@@ -16,7 +16,7 @@
             "rut": "17175435-6",
             "direccion": "Corindon 1531",
             "telefono": "+56985084650",
-            "tipo_user": "ARRENDADOR",
+            "tipo_usuario": "ARRENDADOR",
             "groups": [],
             "user_permissions": []
         }
@@ -26,7 +26,7 @@
         "pk": 2,
         "fields": {
             "password": "pbkdf2_sha256$600000$co7Mx3CinKKRkzjZWwUxeu$puc1n+nwjgIMQzsAXQoAUInDMYp/pVXmxR1iN+VI3iY=",
-            "last_login": null,
+            "last_login": "2024-05-31T01:07:09.617Z",
             "is_superuser": false,
             "username": "juanito",
             "first_name": "Juanito",
@@ -38,7 +38,7 @@
             "rut": "17383607-4",
             "direccion": "calle siempre viva 752",
             "telefono": "+56973023059",
-            "tipo_user": "ARRENDATARIO",
+            "tipo_usuario": "ARRENDATARIO",
             "groups": [],
             "user_permissions": []
         }
@@ -48,7 +48,7 @@
         "pk": 3,
         "fields": {
             "password": "pbkdf2_sha256$600000$BEGB5MeKMhVGWdvqz4c5qQ$4FFiqkrz4L7ofAfyp3cfJ4i8lc72F5hUCGYOhkWfGL0=",
-            "last_login": null,
+            "last_login": "2024-05-31T01:36:49.245Z",
             "is_superuser": false,
             "username": "anita",
             "first_name": "Ana",
@@ -60,7 +60,7 @@
             "rut": "9163488-0",
             "direccion": "San Francisco de asis 8028",
             "telefono": "+56973023059",
-            "tipo_user": "ARRENDADOR",
+            "tipo_usuario": "ARRENDADOR",
             "groups": [],
             "user_permissions": []
         }
@@ -82,7 +82,29 @@
             "rut": "17383607-4",
             "direccion": "Corindon 1531",
             "telefono": "+56985084650",
-            "tipo_user": "ARRENDATARIO",
+            "tipo_usuario": "ARRENDATARIO",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "app.usuario",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$8UiOXZoNm13Ia15HtrNDVy$gYM8B2s7zAaEkLcikBnBgDmFQ16Lk8hmqAY0XT8FDsY=",
+            "last_login": "2024-05-31T01:40:56.425Z",
+            "is_superuser": false,
+            "username": "elise",
+            "first_name": "Elise",
+            "last_name": "Villarreal Fierro",
+            "email": "elise@correo.cl",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-05-31T01:40:56.102Z",
+            "rut": "27090797-0",
+            "direccion": "Corindon 1531",
+            "telefono": "+56985084650",
+            "tipo_usuario": "ARRENDADOR",
             "groups": [],
             "user_permissions": []
         }

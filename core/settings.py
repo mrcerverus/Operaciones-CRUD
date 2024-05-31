@@ -60,7 +60,7 @@ MIDDLEWARE = [
 ]
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'bienvenido'
+LOGIN_REDIRECT_URL = 'welcome'
 LOGOUT_REDIRECT_URL = 'login'
 
 ROOT_URLCONF = 'core.urls'

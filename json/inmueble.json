@@ -4,21 +4,20 @@
         "pk": 1,
         "fields": {
             "nombre": "Casa Up",
-            "descripcion": "Casa dise�o pelicula UP - Pixar Disney",
+            "descripcion": "Casa diseno pelicula UP - Pixar Disney",
             "m2_construidos": 120.0,
             "m2_totales": 200.0,
             "cantidad_estacionamientos": 2,
             "cantidad_habitaciones": 3,
             "cantidad_banos": 2,
             "direccion": "Calle Siempre Viva 123",
-            "comuna": 1,
-            "tipo_inmueble": "CASA",
+            "comuna": 346,
+            "tipo_inmueble": "casa",
             "precio_mensual_arriendo": "700000.00",
+            "propietario": 5,
             "activo": true,
-            "fecha_publicacion": "2024-05-27T15:38:53.204Z",
-            "user": [
-                1
-            ]
+            "fecha_publicacion": "2024-05-31T02:48:25.664Z",
+            "imagen": "app/photo/casa.jpg"
         }
     },
     {
@@ -27,20 +26,19 @@
         "fields": {
             "nombre": "Gotham",
             "descripcion": "Departamento en Gotham City, dueno Bruce Wane",
-            "m2_construidos": 120.0,
-            "m2_totales": 200.0,
+            "m2_construidos": 100.0,
+            "m2_totales": 110.0,
             "cantidad_estacionamientos": 2,
             "cantidad_habitaciones": 4,
-            "cantidad_banos": 2,
+            "cantidad_banos": 3,
             "direccion": "Calle Siempre Viva 1050",
-            "comuna": 2,
-            "tipo_inmueble": "DEPARTAMENTO",
+            "comuna": 317,
+            "tipo_inmueble": "departamento",
             "precio_mensual_arriendo": "1000000.00",
+            "propietario": 1,
             "activo": true,
-            "fecha_publicacion": "2024-05-27T15:38:53.204Z",
-            "user": [
-                2
-            ]
+            "fecha_publicacion": "2024-05-31T02:49:49.018Z",
+            "imagen": "app/photo/departamento.jpg"
         }
     },
     {
@@ -50,19 +48,18 @@
             "nombre": "Campo - Valley Toon",
             "descripcion": "Parcela de agrado para caballos",
             "m2_construidos": 120.0,
-            "m2_totales": 200.0,
+            "m2_totales": 300.0,
             "cantidad_estacionamientos": 4,
             "cantidad_habitaciones": 8,
-            "cantidad_banos": 2,
+            "cantidad_banos": 3,
             "direccion": "Calle Falsa 123",
-            "comuna": 5,
-            "tipo_inmueble": "PARCELA",
+            "comuna": 337,
+            "tipo_inmueble": "parcela",
             "precio_mensual_arriendo": "1500000.00",
+            "propietario": 3,
             "activo": true,
-            "fecha_publicacion": "2024-05-27T15:38:53.204Z",
-            "user": [
-                2
-            ]
+            "fecha_publicacion": "2024-05-31T02:50:49.057Z",
+            "imagen": "app/photo/parcela.jpg"
         }
     }
 ]

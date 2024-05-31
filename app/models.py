@@ -45,14 +45,14 @@ class Comuna(models.Model):
     region = models.ForeignKey(Region, verbose_name="region", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name} - Region {self.region.name}"
+        return f"{self.name}"
 
 
 class Usuario(AbstractUser):
     #Propiedades personzalizadas
     TIPO_USER_CHOICES = [
-        ('ARRENDADOR', 'arrendador'),
-        ('ARRENDATARIO', 'arrendatario'),
+        ('arrendador', 'arrendador'),
+        ('arrendatario', 'arrendatario'),
     ]
 
     # nombre = models.CharField(max_length=50)
@@ -61,17 +61,17 @@ class Usuario(AbstractUser):
     direccion = models.CharField(max_length=50)
     telefono = PhoneNumberField(blank=False, null=False,verbose_name="Telefono de contacto")
     # correo = models.EmailField(max_length=254)
-    tipo_user = models.CharField(max_length=20, choices=TIPO_USER_CHOICES, null=False, blank=False)
+    tipo_usuario = models.CharField(max_length=20, choices=TIPO_USER_CHOICES, null=False, blank=False)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.rut} - {self.tipo_user}"
+        return f"{self.first_name} {self.last_name} - {self.rut} - {self.tipo_usuario}"
 
 
 class Inmueble(models.Model):
     TIPO_INMUEBLE_CHOICES = [
-        ('CASA', 'Casa'),
-        ('DEPARTAMENTO', 'Departamento'),
-        ('PARCELA', 'Parcela'),
+        ('casa', 'Casa'),
+        ('departamento', 'Departamento'),
+        ('parcela', 'Parcela'),
     ]
 
     nombre = models.CharField(max_length=200,null=False, blank=False)
@@ -85,7 +85,7 @@ class Inmueble(models.Model):
     comuna = models.ForeignKey("Comuna", verbose_name="Comuna", on_delete=models.CASCADE)
     tipo_inmueble = models.CharField(max_length=20, choices=TIPO_INMUEBLE_CHOICES, null=False, blank=False)
     precio_mensual_arriendo = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
-    user = models.ManyToManyField("Usuario", verbose_name="Usuario")
+    propietario = models.ForeignKey("Usuario", verbose_name="Usuario", on_delete=models.CASCADE)
     activo = models.BooleanField(default=True, null=False, blank=False)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     imagen = models.ImageField(upload_to='app/photo/', null=True, blank=True)
@@ -96,9 +96,9 @@ class Inmueble(models.Model):
 
 class SolicitudArriendo(models.Model):
     TIPO_ESTADO_CHOICES = [
-        ('PENDIENTE','Pendiente'),
-        ('ACEPTADO','Aceptado'),
-        ('RECHAZADO','Rechazado'),
+        ('pendiente','Pendiente'),
+        ('aceptado','Aceptado'),
+        ('rechazado','Rechazado'),
     ]
 
     arrendatario = models.ForeignKey(Usuario, verbose_name='Usuario', on_delete=models.CASCADE)

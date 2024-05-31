@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import index, register, welcome, actualizar_inmueble, crear_inmueble, eliminar_inmueble, detalle_inmueble
+from app.views import *
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,13 +25,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='indice'),
     path('register/', register, name='register'),
-    path('bienvenido/', welcome, name='bienvenido'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('inmueble_detalle/', detalle_inmueble , name='detalle_inmueble'),
-    path('inmueble_carga/', crear_inmueble, name='cargar_inmueble'),
-    path('inmueble_editar/', actualizar_inmueble, name='editar_inmueble'),
-    path('inmueble_eliminar/', eliminar_inmueble, name='eliminar_inmueble'),
-
+    path('detalle_inmueble/',detalle_inmueble , name='detalle_inmueble'),
+    path('generar_solicitud_arriendo/', generar_solicitud_arriendo, name='generar_solicitud_arriendo'),
+    path('actualizar_inmueble/',actualizar_inmueble, name='actualizar_inmueble'),
+    path('eliminar_inmueble/',eliminar_inmueble, name='eliminar_inmueble'),
+    path('crear_inmueble/', crear_inmueble, name='crear_inmueble'),
+    path('solicitudes/', solicitudes_arrendador, name='solicitudes_arrendador'),
+    path('welcome/', welcome, name='welcome'),
+    path('perfil/', actualizar_usuario, name='actualizar_usuario'),
+    path('cambiar_estado_solicitud/', cambiar_estado_solicitud, name='cambiar_estado_solicitud'),
 ]
 
 #para cargar imagenes desde base de datos

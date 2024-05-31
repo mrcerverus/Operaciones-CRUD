@@ -18,79 +18,50 @@
 
 {% block 'content' %}
 
-<!-- Property List Start -->
+
+<!-- About Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="row g-0 gx-5 align-items-end">
-            <div class="col-lg-6">
-                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                    <h1 class="mb-3">Property Listing</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit
-                        eirmod sit diam justo sed rebum.</p>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+
+                <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                    {% comment %} imagen desde base de datos {% endcomment %}
+                    <img class="img-fluid w-100" src="{{ inmueble.imagen.url }}">
                 </div>
-            </div>
-            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
-                <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
-                    <li class="nav-item me-2">
-                        <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">Featured</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2">For Sell</a>
-                    </li>
-                    <li class="nav-item me-0">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-3">For Rent</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="tab-content">
-
-            <div id="tab-1" class="tab-pane fade show p-0 active">
-                <div class="row g-4">
-
-                    <!-- Ciclo For para inmuebles -->
-
-                    {% for inm in inmuebles %}
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="property-item rounded overflow-hidden">
-                            <div class="position-relative overflow-hidden">
-                                {% comment %} Imagenes desde tabla Imagen {% endcomment %}
-
-                                <a href=""><img class="img-fluid" src="{{ inm.imagen.url }}" alt=""></a>
-
-                                <div
-                                    class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                    Arriendo</div>
-                                <div
-                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                    {{ inm.tipo_inmueble }}</div>
-                            </div>
-                            <div class="p-4 pb-0">
-                                <h5 class="text-primary mb-3">$ {{ inm.precio_mensual_arriendo }}.-</h5>
-                                <a class="d-block h5 mb-2" href="">{{ inm.nombre }}</a>
-                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ inm.direccion}}, {{ inm.comuna.name }}</p>
-                            </div>
-                            <div class="d-flex border-top">
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-ruler-combined text-primary me-2">{{inm.m2_totales}}</i>{{ inm.precio }} </small>
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-bed text-primary me-2"></i>{{ inm.cantidad_habitaciones }}</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
-                                    {{ inm.banos }}</small>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                </div>
             </div>
 
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+
+                <h1 class="mb-4">{{ inmueble.nombre}}</h1>
+                <p class="mb-4">{{ inmueble.descripcion }}</p>
+                <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.m2_construidos }}</p>
+                <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.m2_totales }}</p>
+                <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.cantidad_estacionamientos }}</p>
+                <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.cantidad_habitaciones }}</p>
+                <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.cantidad_banos }}</p>
+                <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.direccion }}</p>
+                <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.precio_mensual_arriendo }}</p>
+
+            {% if user.tipo_usuario == 'arrendatario' %}
+
+            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'generar_solicitud_arriendo' inmueble.id %}">Solicitud de Arriendo</a>
+            
+            {% endif %}
+            
+            {% if user.tipo_usuario == 'arrendador' %}
+
+            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'editar_inmueble' inmueble.id %}" onclick="return confirm('¿editar?');">Editar Inmueble</a>
+            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'eliminar_inmueble' inmueble.id %}" onclick="return confirm('¿quieres eliminar?');">Eliminar Inmueble</a>
+            
+            {% endif %}
+
+            </div>
         </div>
     </div>
 </div>
-
+<!-- About End -->
 
 {% endblock 'content' %}
 <br>

@@ -8,9 +8,9 @@ admin.site.site_title = 'Arriendos'
 
 class UserAdmin(UserAdmin):
     resource_class = Usuario
-    list_display = ['username','rut','first_name','last_name','email', 'tipo_user', 'is_staff']
+    list_display = ['username','rut','first_name','last_name','email', 'tipo_usuario', 'is_staff']
     fieldsets = UserAdmin.fieldsets + (
-        ('Datos', {'fields': ('rut', 'direccion', 'telefono', 'tipo_user')}),
+        ('Datos', {'fields': ('rut', 'direccion', 'telefono', 'tipo_usuario')}),
     )
 
 
@@ -21,4 +21,3 @@ admin.site.register(Inmueble)
 admin.site.register(Region)
 admin.site.register(Comuna)
 admin.site.register(SolicitudArriendo)
-

@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block "header" %}
+
+{% if user.tipo_usuario == 'arrendador' %}
+
+<section class="page-section">
+    <div class="container">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+            <h2 class="section-heading mb-4">
+                <span class="section-heading-upper">Bienvenid@</span>
+                <span class="section-heading-lower">{{ user.username }}</span>
+                <span class="section-heading-lower">Dashboard - Arrendatario</span>
+            </h2>
+        </div>
+    </div>
+</section>
+
+{% endblock "header" %} 
+
+{% block 'content' %}
+
+<!-- Property List Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="mb-3">Tus Inmuebles</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+                <form method="GET" action="{% url 'welcome' %}">
+                    <label for="region">Región:</label>
+                    <select name="region" id="region">
+                        <option value="">Seleccionar Región</option>
+                        {% for region in regiones %}
+                        <option value="{{ region.id }}">{{ region.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="comuna">Comuna:</label>
+                    <select name="comuna" id="comuna">
+                        <option value="">Seleccionar Comuna</option>
+                        {% for comuna in comunas %}
+                        <option value="{{ comuna.id }}">{{ comuna.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Filtrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+                <div class="row g-4">
+                    <!-- Ciclo For para inmuebles -->
+
+                    {% for inm in inmuebles %}
+
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="property-item rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                {% comment %} Imagenes desde tabla Imagen {% endcomment %}
+
+                                <a href=""><img class="img-fluid" src="{{ inm.imagen.url }}" alt="" /></a>
+
+                                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                    Arriendo
+                                </div>
+                                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                    {{ inm.tipo_inmueble }}
+                                </div>
+                            </div>
+                            <div class="p-4 pb-0">
+                                <h5 class="text-primary mb-3">
+                                    $ {{ inm.precio_mensual_arriendo }}.-
+                                </h5>
+                                <a class="d-block h5 mb-2" href="">{{ inm.nombre }}</a>
+                                <p>
+                                    <i class="fa fa-map-marker-alt text-primary me-2"></i>
+                                    {{ inm.direccion}}, {{ inm.comuna.name }}
+                                </p>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-ruler-combined text-primary me-2">{{inm.m2_totales}}</i>{{inm.precio }}
+                                </small>
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-bed text-primary me-2"></i>
+                                        {{ inm.cantidad_habitaciones }}
+                                </small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>
+                                    {{ inm.banos}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="row g-4">
+
+                    <!-- Ciclo For para solicitudes -->
+                    {% for solicitud in solicitudes %}
+                    <div class="card mb-3 {% if solicitud.estado == 'aceptado' %}bg-success
+                        {% elif solicitud.estado == 'pendiente' %}bg-warning
+                        {% elif solicitud.estado == 'rechazado' %}bg-danger
+                        {% else %}bg-secondary
+                        {% endif %}">
+                    <div class="card-header">{{solicitud.estado}}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ solicitud }}</h5>
+                        <P>{{solicitud.mensaje}}</P>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock 'content' %}
