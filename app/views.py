@@ -10,6 +10,9 @@ from django.contrib import messages
 def index(request):
     return render(request,'index.html', {})
 
+def about(request):
+    return render(request,'about.html', {})
+
 #detalle del inmueble
 @login_required
 def detalle_inmueble(request, id):
@@ -42,7 +45,7 @@ def generar_solicitud_arriendo(request, id):
     inmueble = get_object_or_404(Inmueble, pk=id)
     
     # Verificar si el usuario está autenticado y es un arrendatario
-    if request.user.is_authenticated and request.user.tipo_usuario == 'arrendatario':
+    if request.user.is_authenticated and request.user.tipo_usuario == 'ARRENDATARIO':
         if request.method == 'POST':
             form = SolicitudArriendoForm(request.POST)
             if form.is_valid():
@@ -50,7 +53,7 @@ def generar_solicitud_arriendo(request, id):
                 solicitud.arrendatario = request.user  # Asignar el usuario arrendatario
                 solicitud.inmueble = inmueble
                 solicitud.save()
-                return redirect('detalle', id=inmueble.id)
+                return redirect('detalle_inmueble', id=inmueble.id)
         else:
             # Inicializar el formulario con el inmueble correspondiente
             form = SolicitudArriendoForm(initial={'inmueble': inmueble})
@@ -62,13 +65,13 @@ def generar_solicitud_arriendo(request, id):
 @login_required
 def solicitudes_arrendador(request):
     # Verificar si el usuario es un arrendador
-    if request.user.tipo_usuario == 'arrendador':
+    if request.user.tipo_usuario == 'ARRENDADOR':
         # Obtener todas las solicitudes recibidas por el arrendador
         solicitudes = SolicitudArriendo.objects.filter(inmueble__propietario=request.user)
         return render(request, 'solicitudes_arrendador.html', {'solicitudes': solicitudes})
     else:
         # Redirigir a otra página si el usuario no es un arrendador
-        return redirect('index')
+        return redirect('indice')
 
 
 #Crear Inmueble
@@ -113,7 +116,7 @@ def eliminar_inmueble(request, id):
 #Muestra inmuebles segun logeo
 @login_required
 def welcome(request):
-    if request.user.tipo_usuario == 'arrendatario':
+    if request.user.tipo_usuario == 'ARRENDATARIO':
         solicitudes = SolicitudArriendo.objects.filter(arrendatario=request.user)
         regiones = Region.objects.all()
         comunas = Comuna.objects.all()
@@ -125,14 +128,14 @@ def welcome(request):
         if comuna_id:
             inmuebles = inmuebles.filter(comuna_id=comuna_id)
         
-        return render(request, 'dashboard_arrendatario.html', {'solicitudes': solicitudes, 'regiones': regiones, 'comunas': comunas, 'inmuebles': inmuebles})
+        return render(request, 'welcome_arrendatario.html', {'solicitudes': solicitudes, 'regiones': regiones, 'comunas': comunas, 'inmuebles': inmuebles})
     
-    elif request.user.tipo_usuario == 'arrendador':
+    elif request.user.tipo_usuario == 'ARRENDADOR':
         # Obtener las solicitudes recibidas por el arrendador
         solicitudes_recibidas = SolicitudArriendo.objects.filter(inmueble__propietario=request.user)
         # Obtener los inmuebles del arrendador
         inmuebles = Inmueble.objects.filter(propietario=request.user)
-        return render(request, 'dashboard_arrendador.html', {'solicitudes_recibidas': solicitudes_recibidas, 'inmuebles': inmuebles})
+        return render(request, 'welcome_arrendador.html', {'solicitudes_recibidas': solicitudes_recibidas, 'inmuebles': inmuebles})
 
 
 @login_required
@@ -157,4 +160,4 @@ def cambiar_estado_solicitud(request, solicitud_id):
             nuevo_estado = request.POST.get('nuevo_estado')
             solicitud.estado = nuevo_estado
             solicitud.save()
-    return redirect('welcome')
+    return redirect('solicitudes_arrendador')

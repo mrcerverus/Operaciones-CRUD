@@ -44,15 +44,15 @@
                 <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.direccion }}</p>
                 <p><i class="fa fa-check text-primary me-3"></i>{{ inmueble.precio_mensual_arriendo }}</p>
 
-            {% if user.tipo_usuario == 'arrendatario' %}
+            {% if user.tipo_usuario == 'ARRENDATARIO' %}
 
             <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'generar_solicitud_arriendo' inmueble.id %}">Solicitud de Arriendo</a>
             
             {% endif %}
             
-            {% if user.tipo_usuario == 'arrendador' %}
+            {% if user.tipo_usuario == 'ARRENDADOR' %}
 
-            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'editar_inmueble' inmueble.id %}" onclick="return confirm('¿editar?');">Editar Inmueble</a>
+            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'actualizar_inmueble' inmueble.id %}" onclick="return confirm('¿editar?');">Editar Inmueble</a>
             <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'eliminar_inmueble' inmueble.id %}" onclick="return confirm('¿quieres eliminar?');">Eliminar Inmueble</a>
             
             {% endif %}
@@ -64,4 +64,3 @@
 <!-- About End -->
 
 {% endblock 'content' %}
-<br>

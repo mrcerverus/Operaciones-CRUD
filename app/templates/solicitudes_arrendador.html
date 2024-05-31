@@ -24,7 +24,7 @@
         <div class="row g-0 gx-5 align-items-end">
             <div class="col-lg-6">
                 <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                    <h1 class="mb-3">Solicitudes Recibidas</h1>
+                    <h2 class="mb-3">Solicitudes Recibidas</h2>
                 </div>
             </div>
         </div>
@@ -33,23 +33,29 @@
 
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
-
                     <!-- Ciclo For para inmuebles -->
-
                     {% for solicitud in solicitudes %}
 
-                    <li>
-                        <p>Arrendatario: {{ solicitud.arrendatario }}</p>
-                        <p>Inmueble: {{ solicitud.inmueble }}</p>
-                        <p>Mensaje: {{ solicitud.mensaje }}</p>
-                    </li>
+                    <div class="card border-primary">
+                        <img class="card-img-top" src="holder.js/100px180/" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Arrendatario: {{ solicitud.arrendatario}}</h4>
+                            <p class="card-text">
+                                <p>Inmueble: {{ solicitud.inmueble }}</p>
+                                <p>Mensaje: {{ solicitud.mensaje }}</p>
+                                <p>Estado: {{ solicitud.estado }}</p>
+                            </p>
+                        </div>
+                        <div class="card-botton">
+                                <a href="{% url "cambiar_estado_solicitud" solicitud.id %}" class="btn btn-primary btn-sm btn-primary">Actualizar</a>
+                        </div>
+                    </div>
 
                     {% empty %}
-
-                    <li>No hay solicitudes recibidas.</li>
-
+                    <div class="card">
+                        <li>No hay solicitudes recibidas</li>
+                    </div>
                     {% endfor %}
-
                 </div>
             </div>
 

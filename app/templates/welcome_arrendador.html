@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% load static %} 
 
-{% block "header" %}
-
 {% if user.tipo_usuario == 'arrendador' %}
 
-<section class="page-section">
-    <div class="container">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-            <h2 class="section-heading mb-4">
-                <span class="section-heading-upper">Bienvenid@</span>
-                <span class="section-heading-lower">{{ user.username }}</span>
-                <span class="section-heading-lower">Dashboard - Arrendatario</span>
-            </h2>
+{% block "header" %}
+
+    <section class="page-section">
+        <div class="container">
+            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                <h2 class="section-heading mb-4">
+                    <span class="section-heading-upper">Bienvenid@</span>
+                    <span class="section-heading-lower">{{ user.username }}</span>
+                    <br>
+                    <span class="section-heading-lower">Dashboard - Arrendador</span>
+                </h2>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock "header" %} 
 
@@ -64,7 +65,9 @@
                             <div class="position-relative overflow-hidden">
                                 {% comment %} Imagenes desde tabla Imagen {% endcomment %}
 
-                                <a href=""><img class="img-fluid" src="{{ inm.imagen.url }}" alt="" /></a>
+                                <a href="{% url "detalle_inmueble" inm.id %}">
+                                    <img class="img-fluid" src="{{ inm.imagen.url }}" alt="" />
+                                </a>
 
                                 <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                     Arriendo
@@ -100,22 +103,28 @@
                     {% endfor %}
                 </div>
 
+{% comment %} solicitudes {% endcomment %}
+
                 <div class="row g-4">
 
                     <!-- Ciclo For para solicitudes -->
                     {% for solicitud in solicitudes %}
-                    <div class="card mb-3 {% if solicitud.estado == 'aceptado' %}bg-success
-                        {% elif solicitud.estado == 'pendiente' %}bg-warning
-                        {% elif solicitud.estado == 'rechazado' %}bg-danger
+
+                    <div class="card mb-3 {% if solicitud.estado == 'ACEPTADO' %}bg-success
+                        {% elif solicitud.estado == 'PENDIENTE' %}bg-warning
+                        {% elif solicitud.estado == 'RECHAZADO' %}bg-danger
                         {% else %}bg-secondary
                         {% endif %}">
+                    </div>
+
                     <div class="card-header">{{solicitud.estado}}</div>
+
                     <div class="card-body">
-                        <h5 class="card-title">{{ solicitud }}</h5>
+                        <h5 class="card-title">{{ solicitud.arrendatario }}</h5>
                         <P>{{solicitud.mensaje}}</P>
                     </div>
+                    
                     {% endfor %}
-
                 </div>
 
             </div>
@@ -123,6 +132,8 @@
     </div>
 </div>
 
-{% endif %}
+
 
 {% endblock 'content' %}
+
+{% endif %}

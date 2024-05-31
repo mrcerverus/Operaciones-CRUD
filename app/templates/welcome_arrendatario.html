@@ -9,6 +9,7 @@
             <h2 class="section-heading mb-4">
                 <span class="section-heading-upper">Bienvenid@</span>
                 <span class="section-heading-lower">{{ user.username }}</span>
+                <br>
                 <span class="section-heading-lower">Dashboard - Arrendatario</span>
             </h2>
         </div>
@@ -61,15 +62,13 @@
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
                                 {% comment %} Imagenes desde tabla Imagen {% endcomment %}
-
-                                <a href=""><img class="img-fluid" src="{{ inm.imagen.url }}" alt="" /></a>
-
-                                <div
-                                    class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                    Arriendo
+                                <a href="{% url "detalle_inmueble" inm.id %}">
+                                    <img class="img-fluid" src="{{ inm.imagen.url }}" alt="">
+                                </a>
+                                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                    arriendo 
                                 </div>
-                                <div
-                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                     {{ inm.tipo_inmueble }}
                                 </div>
                             </div>
@@ -77,45 +76,53 @@
                                 <h5 class="text-primary mb-3">
                                     $ {{ inm.precio_mensual_arriendo }}.-
                                 </h5>
-                                <a class="d-block h5 mb-2" href="">{{ inm.nombre }}</a>
+                                <a class="d-block h5 mb-2" href="">
+                                    {{ inm.nombre }}
+                                </a>
                                 <p>
-                                    <i class="fa fa-map-marker-alt text-primary me-2"></i>{{
-                                    inm.direccion}}, {{ inm.comuna.name }}
+                                    <i class="fa fa-map-marker-alt text-primary me-2"></i>
+                                    {{ inm.direccion}}, {{ inm.comuna.name }}
                                 </p>
                             </div>
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-ruler-combined text-primary me-2">{{inm.m2_totales}}</i>{{
-                                    inm.precio }}
+                                        class="fa fa-ruler-combined text-primary me-2">{{inm.m2_totales}}</i>
+                                        {{inm.precio }}
                                 </small>
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-bed text-primary me-2"></i>{{
-                                    inm.cantidad_habitaciones }}</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
-                                    {{ inm.banos
-                                    }}</small>
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-bed text-primary me-2"></i>
+                                    {{ inm.cantidad_habitaciones }}
+                                </small>
+                                <small class="flex-fill text-center py-2">
+                                    <i class="fa fa-bath text-primary me-2"></i>
+                                    {{ inm.banos }}
+                                </small>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
 
-                <div class="row g-4">
+                {% comment %} Solicitudes de Arriendo {% endcomment %}
 
+                <div class="row g-4">
                     <!-- Ciclo For para solicitudes -->
                     {% for solicitud in solicitudes %}
-                    <div class="card mb-3 {% if solicitud.estado == 'aceptado' %}bg-success
-                        {% elif solicitud.estado == 'pendiente' %}bg-warning
-                        {% elif solicitud.estado == 'rechazado' %}bg-danger
+                    <div class="card mb-3 {% if solicitud.estado == 'ACEPTADO' %}bg-success
+                        {% elif solicitud.estado == 'PENDIENTE' %}bg-warning
+                        {% elif solicitud.estado == 'RECHAZO' %}bg-danger
                         {% else %}bg-secondary
                         {% endif %}">
+                    </div>
+
                     <div class="card-header">{{solicitud.estado}}</div>
+
                     <div class="card-body">
                         <h5 class="card-title">{{ solicitud }}</h5>
                         <P>{{solicitud.mensaje}}</P>
                     </div>
-                    {% endfor %}
 
+                    {% endfor %}
                 </div>
 
             </div>

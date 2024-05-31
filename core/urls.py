@@ -24,17 +24,18 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='indice'),
+    path('about/', about , name='about'),
     path('register/', register, name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('detalle_inmueble/',detalle_inmueble , name='detalle_inmueble'),
-    path('generar_solicitud_arriendo/', generar_solicitud_arriendo, name='generar_solicitud_arriendo'),
-    path('actualizar_inmueble/',actualizar_inmueble, name='actualizar_inmueble'),
-    path('eliminar_inmueble/',eliminar_inmueble, name='eliminar_inmueble'),
+    path('detalle_inmueble/<int:id>/', detalle_inmueble , name='detalle_inmueble'),
+    path('generar_solicitud_arriendo/<int:id>/', generar_solicitud_arriendo, name='generar_solicitud_arriendo'),
+    path('actualizar_inmueble/<int:id>/', actualizar_inmueble, name='actualizar_inmueble'),
+    path('eliminar_inmueble/<int:id>/', eliminar_inmueble, name='eliminar_inmueble'),
     path('crear_inmueble/', crear_inmueble, name='crear_inmueble'),
     path('solicitudes/', solicitudes_arrendador, name='solicitudes_arrendador'),
     path('welcome/', welcome, name='welcome'),
     path('perfil/', actualizar_usuario, name='actualizar_usuario'),
-    path('cambiar_estado_solicitud/', cambiar_estado_solicitud, name='cambiar_estado_solicitud'),
+    path('cambiar_estado_solicitud/<int:solicitud_id>/', cambiar_estado_solicitud, name='cambiar_estado_solicitud'),
 ]
 
 #para cargar imagenes desde base de datos

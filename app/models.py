@@ -64,7 +64,7 @@ class Usuario(AbstractUser):
     tipo_usuario = models.CharField(max_length=20, choices=TIPO_USER_CHOICES, null=False, blank=False)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.rut} - {self.tipo_usuario}"
+        return f"{self.first_name} {self.last_name} - {self.rut}"
 
 
 class Inmueble(models.Model):
@@ -91,7 +91,7 @@ class Inmueble(models.Model):
     imagen = models.ImageField(upload_to='app/photo/', null=True, blank=True)
 
     def __str__(self):
-        return f"Nombre propiedad: {self.nombre} / Fecha Publicacion: {self.fecha_publicacion}"
+        return f"Nombre propiedad: {self.nombre}"
 
 
 class SolicitudArriendo(models.Model):
