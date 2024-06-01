@@ -31,26 +31,45 @@
                     <h1 class="mb-3">Inmuebles Disponibles</h1>
                 </div>
             </div>
-            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+        </div>
+
+        <!-- Filter Form -->
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+
+                <!-- Filter Form -->
                 <form method="GET" action="{% url 'welcome' %}">
-                    <label for="region">Región:</label>
-                    <select name="region" id="region">
-                        <option value="">Seleccionar Región</option>
-                        {% for region in regiones %}
-                        <option value="{{ region.id }}">{{ region.nombre }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="comuna">Comuna:</label>
-                    <select name="comuna" id="comuna">
-                        <option value="">Seleccionar Comuna</option>
-                        {% for comuna in comunas %}
-                        <option value="{{ comuna.id }}">{{ comuna.nombre }}</option>
-                        {% endfor %}
-                    </select>
-                    <button type="submit">Filtrar</button>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select name="region" id="region" class="form-control" onchange="filterComunas()">
+                                <option value="">Todas las regiones</option>
+                                {% for region in regiones %}
+                                <option value="{{ region.id }}" {% if region.id|stringformat:"s" == request.GET.region %}selected{% endif %}>
+                                    {{ region.name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="comuna" id="comuna" class="form-control">
+                                <option value="">Todas las comunas</option>
+                                {% for comuna in comunas %}
+                                <option value="{{ comuna.id }}" data-region="{{ comuna.region.id }}" {% if comuna.id|stringformat:"s" == request.GET.comuna %}selected{% endif %}>
+                                    {{ comuna.name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                        </div>
+                    </div>
                 </form>
+                <!-- End Filter Form -->
+
             </div>
         </div>
+        <!-- End Filter Form -->
 
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
@@ -99,5 +118,28 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        filterComunas();
+    });
+
+    function filterComunas() {
+        var regionSelect = document.getElementById("region");
+        var comunaSelect = document.getElementById("comuna");
+        var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
+
+        for (var i = 0; i < comunaSelect.options.length; i++) {
+            var option = comunaSelect.options[i];
+            var region = option.getAttribute("data-region");
+            if (selectedRegion === "" || region === selectedRegion) {
+                option.style.display = "block";
+            } else {
+                option.style.display = "none";
+            }
+        }
+    }
+</script>
 
 {% endblock 'content' %}

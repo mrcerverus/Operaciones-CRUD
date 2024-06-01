@@ -140,7 +140,25 @@ def welcome(request):
         solicitudes_enviadas = SolicitudArriendo.objects.filter(inmueble__propietario=request.user)
         # Obtener los inmuebles del arrendador
         inmuebles = Inmueble.objects.filter(propietario=request.user)
-        return render(request, 'welcome_arrendador.html', {'solicitudes_enviadas': solicitudes_enviadas, 'inmuebles': inmuebles})
+        # Obtener regiones y comunas para el filtro
+        regiones = Region.objects.all()
+        comunas = Comuna.objects.all()
+        region_id = request.GET.get('region')
+        comuna_id = request.GET.get('comuna')
+        if region_id:
+            inmuebles = inmuebles.filter(comuna__region_id=region_id)
+        if comuna_id:
+            inmuebles = inmuebles.filter(comuna_id=comuna_id)
+
+        context = {
+            'solicitudes_enviadas': solicitudes_enviadas,
+            'inmuebles': inmuebles,
+            'regiones': regiones,
+            'comunas': comunas,
+        }
+
+        return render(request, 'welcome_arrendador.html', context)
+
 
 #cambiar estado de solicitud
 @login_required
