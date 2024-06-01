@@ -88,7 +88,7 @@ class Inmueble(models.Model):
     propietario = models.ForeignKey("Usuario", verbose_name="Usuario", on_delete=models.CASCADE)
     activo = models.BooleanField(default=True, null=False, blank=False)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
-    imagen = models.ImageField(upload_to='app/photo/', null=True, blank=True)
+    imagen = models.ImageField(upload_to='albums/images/', null=True, blank=True)
 
     def __str__(self):
         return f"Nombre propiedad: {self.nombre}"

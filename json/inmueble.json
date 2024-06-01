@@ -12,12 +12,12 @@
             "cantidad_banos": 2,
             "direccion": "Calle Siempre Viva 123",
             "comuna": 346,
-            "tipo_inmueble": "casa",
+            "tipo_inmueble": "CASA",
             "precio_mensual_arriendo": "700000.00",
             "propietario": 5,
             "activo": true,
             "fecha_publicacion": "2024-05-31T02:48:25.664Z",
-            "imagen": "app/photo/casa.jpg"
+            "imagen": "albums/images/casa.jpg"
         }
     },
     {
@@ -33,12 +33,12 @@
             "cantidad_banos": 3,
             "direccion": "Calle Siempre Viva 1050",
             "comuna": 317,
-            "tipo_inmueble": "departamento",
+            "tipo_inmueble": "DEPARTAMENTO",
             "precio_mensual_arriendo": "1000000.00",
             "propietario": 1,
             "activo": true,
             "fecha_publicacion": "2024-05-31T02:49:49.018Z",
-            "imagen": "app/photo/departamento.jpg"
+            "imagen": "albums/images/departamento.jpg"
         }
     },
     {
@@ -46,7 +46,7 @@
         "pk": 3,
         "fields": {
             "nombre": "Campo - Valley Toon",
-            "descripcion": "Parcela de agrado para caballos",
+            "descripcion": "Parcela de agrado para tus dias de relajo",
             "m2_construidos": 120.0,
             "m2_totales": 300.0,
             "cantidad_estacionamientos": 4,
@@ -54,12 +54,75 @@
             "cantidad_banos": 3,
             "direccion": "Calle Falsa 123",
             "comuna": 337,
-            "tipo_inmueble": "parcela",
+            "tipo_inmueble": "PARCELA",
             "precio_mensual_arriendo": "1500000.00",
             "propietario": 3,
             "activo": true,
             "fecha_publicacion": "2024-05-31T02:50:49.057Z",
-            "imagen": "app/photo/parcela.jpg"
+            "imagen": "albums/images/parcela.jpg"
+        }
+    },
+    {
+        "model": "app.inmueble",
+        "pk": 4,
+        "fields": {
+            "nombre": "Parcela El Arriero",
+            "descripcion": "PArcela de agrado con piscina",
+            "m2_construidos": 150.0,
+            "m2_totales": 500.0,
+            "cantidad_estacionamientos": 6,
+            "cantidad_habitaciones": 4,
+            "cantidad_banos": 2,
+            "direccion": "Camino el lodal 1234",
+            "comuna": 331,
+            "tipo_inmueble": "PARCELA",
+            "precio_mensual_arriendo": "2000000.00",
+            "propietario": 3,
+            "activo": true,
+            "fecha_publicacion": "2024-06-01T13:18:04.219Z",
+            "imagen": "albums/images/parcela2.jpg"
+        }
+    },
+    {
+        "model": "app.inmueble",
+        "pk": 5,
+        "fields": {
+            "nombre": "Club de Toby",
+            "descripcion": "Departamento para tus celebraciones \"especiales\"",
+            "m2_construidos": 100.0,
+            "m2_totales": 120.0,
+            "cantidad_estacionamientos": 2,
+            "cantidad_habitaciones": 3,
+            "cantidad_banos": 2,
+            "direccion": "Av. Siempre Viva 666",
+            "comuna": 308,
+            "tipo_inmueble": "DEPARTAMENTO",
+            "precio_mensual_arriendo": "600000.00",
+            "propietario": 1,
+            "activo": true,
+            "fecha_publicacion": "2024-06-01T13:25:32.318Z",
+            "imagen": "albums/images/departamento2.jpg"
+        }
+    },
+    {
+        "model": "app.inmueble",
+        "pk": 6,
+        "fields": {
+            "nombre": "Casa Con Piscina",
+            "descripcion": "Fabulosa casa con piscina para tus ninos",
+            "m2_construidos": 130.0,
+            "m2_totales": 150.0,
+            "cantidad_estacionamientos": 3,
+            "cantidad_habitaciones": 4,
+            "cantidad_banos": 2,
+            "direccion": "Calle Siempre Viva 908",
+            "comuna": 316,
+            "tipo_inmueble": "CASA",
+            "precio_mensual_arriendo": "800000.00",
+            "propietario": 5,
+            "activo": true,
+            "fecha_publicacion": "2024-06-01T14:17:55.241Z",
+            "imagen": "albums/images/casa2.jpg"
         }
     }
 ]

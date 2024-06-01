@@ -37,7 +37,8 @@ urlpatterns = [
     path('welcome/', welcome, name='welcome'),
     path('editar_usuario/', editar_usuario, name='editar_usuario'),
     path('password/', cambiar_contrasena, name='cambiar_contrasena'),
-    path('cambiar_estado_solicitud/<int:solicitud_id>/', cambiar_estado_solicitud, name='cambiar_estado_solicitud'),
+    path('cambiar_estado_solicitud/<int:id>/', cambiar_estado_solicitud, name='cambiar_estado_solicitud'),
+
 ]
 
 #para cargar imagenes desde base de datos

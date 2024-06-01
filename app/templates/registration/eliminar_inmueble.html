@@ -10,14 +10,15 @@
     <div>
         <div class="intro-text left-0 bg-faded p-5 rounded">
             <div class="card-header">
-                <h4>Cargar Inmueble</h4>
+                <h4>Borrar Inmueble</h4>
+                <p>¿Estas seguro de querer borra el inmueble?</p>
             </div>
         </div>
 
         <form method="post">
             {% csrf_token %}
             {{ form | crispy }}
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="submit" class="btn btn-primary">Borrar</button>
         </form>
     </div>
 </section>

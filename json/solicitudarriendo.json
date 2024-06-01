@@ -11,11 +11,21 @@
     },
     {
         "model": "app.solicitudarriendo",
-        "pk": 2,
+        "pk": 3,
         "fields": {
             "arrendatario": 4,
-            "inmueble": 1,
-            "mensaje": "Quiero arrendar esta casa por un dulce",
+            "inmueble": 2,
+            "mensaje": "Tony Stark quiere arrendar este lugar por el fin de semana.\r\nHulk si esta invitado Bruce",
+            "estado": "PENDIENTE"
+        }
+    },
+    {
+        "model": "app.solicitudarriendo",
+        "pk": 4,
+        "fields": {
+            "arrendatario": 4,
+            "inmueble": 3,
+            "mensaje": "Tony Star quiere arrendar esta propiedad para el cumpleanos de Morgan",
             "estado": "PENDIENTE"
         }
     }

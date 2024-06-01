@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$600000$Wdk5mqkl7q2b1rmxYnonJD$BHeJjx3/53Uu++OsXALSuPGdUeVSdS7tWbTUXQy0y0w=",
-            "last_login": "2024-05-31T02:46:54.892Z",
+            "last_login": "2024-06-01T14:32:02.494Z",
             "is_superuser": true,
             "username": "admin",
             "first_name": "Ariel",
@@ -26,7 +26,7 @@
         "pk": 2,
         "fields": {
             "password": "pbkdf2_sha256$600000$co7Mx3CinKKRkzjZWwUxeu$puc1n+nwjgIMQzsAXQoAUInDMYp/pVXmxR1iN+VI3iY=",
-            "last_login": "2024-05-31T01:07:09.617Z",
+            "last_login": "2024-06-01T15:45:56.795Z",
             "is_superuser": false,
             "username": "juanito",
             "first_name": "Juanito",
@@ -48,7 +48,7 @@
         "pk": 3,
         "fields": {
             "password": "pbkdf2_sha256$600000$BEGB5MeKMhVGWdvqz4c5qQ$4FFiqkrz4L7ofAfyp3cfJ4i8lc72F5hUCGYOhkWfGL0=",
-            "last_login": "2024-05-31T01:36:49.245Z",
+            "last_login": "2024-06-01T02:11:01.426Z",
             "is_superuser": false,
             "username": "anita",
             "first_name": "Ana",
@@ -69,12 +69,12 @@
         "model": "app.usuario",
         "pk": 4,
         "fields": {
-            "password": "pbkdf2_sha256$600000$rwrWSi7yxbgef6eT8DIJ2M$iAy4T/EQVslT//7QEWf8AdULnm0uVPp87KL+Pw1yUrI=",
-            "last_login": "2024-05-25T14:19:39.921Z",
+            "password": "pbkdf2_sha256$600000$ExWsx8OlFJmsnZ1r0CR3Sv$nvIXAKG/jDySsM1hASIdjG+hdFsRjk82qgo6WbbUizA=",
+            "last_login": "2024-06-01T01:36:06.620Z",
             "is_superuser": false,
             "username": "mrcerverus",
-            "first_name": "mrcerverus",
-            "last_name": "mrcerverus",
+            "first_name": "Tony",
+            "last_name": "Stark",
             "email": "mrcerverus@correo.cl",
             "is_staff": false,
             "is_active": true,
@@ -92,7 +92,7 @@
         "pk": 5,
         "fields": {
             "password": "pbkdf2_sha256$600000$8UiOXZoNm13Ia15HtrNDVy$gYM8B2s7zAaEkLcikBnBgDmFQ16Lk8hmqAY0XT8FDsY=",
-            "last_login": "2024-05-31T01:40:56.425Z",
+            "last_login": "2024-06-01T14:16:16.787Z",
             "is_superuser": false,
             "username": "elise",
             "first_name": "Elise",

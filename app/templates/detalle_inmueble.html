@@ -53,8 +53,8 @@
             
             {% if user.tipo_usuario == 'ARRENDADOR' %}
 
-            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'actualizar_inmueble' inmueble.id %}" onclick="return confirm('¿editar?');">Editar Inmueble</a>
-            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'eliminar_inmueble' inmueble.id %}" onclick="return confirm('¿quieres eliminar?');">Eliminar Inmueble</a>
+            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'actualizar_inmueble' inmueble.id %}" onclick="return confirm('¿Quieres editar?');">Editar Inmueble</a>
+            <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'eliminar_inmueble' inmueble.id %}" onclick="return confirm('¿Seguro que quieres eliminar?');">Eliminar Inmueble</a>
             
             {% endif %}
 

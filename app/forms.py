@@ -86,3 +86,18 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Cambiar Contraseña'))
+
+
+class CambiarEstadoSolicitudForm(forms.ModelForm):
+    class Meta:
+        model = SolicitudArriendo
+        fields = ['estado']
+        widgets = {
+            'estado': forms.Select(attrs={'class': 'form-control'})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Cambiar Estado'))

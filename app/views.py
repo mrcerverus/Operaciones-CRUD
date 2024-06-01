@@ -5,7 +5,6 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 
-
 # Create your views here.
 
 def index(request):
@@ -37,7 +36,6 @@ def register(request):
             data['form'] = user_creation_form
 
     return render(request, 'registration/register.html', data)
-
 
 #Generar solicitud de arriendo
 @login_required
@@ -91,6 +89,7 @@ def crear_inmueble(request):
             inmueble = form.save(commit=False)
             inmueble.propietario = request.user
             inmueble.save()
+            #message = "Inmueble Creado De Forma Exitosa"
             return redirect('welcome') 
     else:
         form = InmuebleForm()
@@ -143,16 +142,18 @@ def welcome(request):
         inmuebles = Inmueble.objects.filter(propietario=request.user)
         return render(request, 'welcome_arrendador.html', {'solicitudes_enviadas': solicitudes_enviadas, 'inmuebles': inmuebles})
 
+#cambiar estado de solicitud
 @login_required
-def cambiar_estado_solicitud(request, solicitud_id):
-    solicitud = get_object_or_404(SolicitudArriendo, pk=solicitud_id)
-    if solicitud.inmueble.propietario == request.user:
-        if request.method == 'POST':
-            nuevo_estado = request.POST.get('nuevo_estado')
-            solicitud.estado = nuevo_estado
-            solicitud.save()
-    messages.success(request, '¡La solicitud a sido procesada!')
-    return redirect('solicitudes_arrendador')
+def cambiar_estado_solicitud(request, id):
+    solicitud = get_object_or_404(SolicitudArriendo, pk=id)
+    if request.method == 'POST':
+        form = CambiarEstadoSolicitudForm(request.POST, request.FILES, instance=solicitud)
+        if form.is_valid():
+            form.save()
+            return redirect('solicitudes_arrendador')
+    else:
+        form = CambiarEstadoSolicitudForm(instance=solicitud)
+    return render(request, 'registration/cambiar_estado_solicitud.html', {'form': form})
 
 #Actualizar Usuario
 @login_required
