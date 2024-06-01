@@ -1,0 +1,22 @@
+[
+    {
+        "model": "app.solicitudarriendo",
+        "pk": 1,
+        "fields": {
+            "arrendatario": 2,
+            "inmueble": 2,
+            "mensaje": "Quiero arrendar esta propiedad, favor indicar requisitos",
+            "estado": "PENDIENTE"
+        }
+    },
+    {
+        "model": "app.solicitudarriendo",
+        "pk": 2,
+        "fields": {
+            "arrendatario": 4,
+            "inmueble": 1,
+            "mensaje": "Quiero arrendar esta casa por un dulce",
+            "estado": "PENDIENTE"
+        }
+    }
+]

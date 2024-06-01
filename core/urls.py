@@ -32,9 +32,11 @@ urlpatterns = [
     path('actualizar_inmueble/<int:id>/', actualizar_inmueble, name='actualizar_inmueble'),
     path('eliminar_inmueble/<int:id>/', eliminar_inmueble, name='eliminar_inmueble'),
     path('crear_inmueble/', crear_inmueble, name='crear_inmueble'),
-    path('solicitudes/', solicitudes_arrendador, name='solicitudes_arrendador'),
+    path('solicitudes_arrendador/', solicitudes_arrendador, name='solicitudes_arrendador'),
+    path('solicitudes_arrendatario/', solicitudes_arrendatario, name='solicitudes_arrendatario'),
     path('welcome/', welcome, name='welcome'),
-    path('perfil/', actualizar_usuario, name='actualizar_usuario'),
+    path('editar_usuario/', editar_usuario, name='editar_usuario'),
+    path('password/', cambiar_contrasena, name='cambiar_contrasena'),
     path('cambiar_estado_solicitud/<int:solicitud_id>/', cambiar_estado_solicitud, name='cambiar_estado_solicitud'),
 ]
 

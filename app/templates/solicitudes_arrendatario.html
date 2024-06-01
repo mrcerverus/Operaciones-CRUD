@@ -24,16 +24,13 @@
         <div class="row g-0 gx-5 align-items-end">
             <div class="col-lg-6">
                 <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                    <h2 class="mb-3">Solicitudes Recibidas</h2>
+                    <h2 class="mb-3">Solicitudes Emitidas</h2>
                 </div>
             </div>
         </div>
 
-        <div class="tab-content">
 
-            <div id="tab-1" class="tab-pane fade show p-0 active">
-                <div class="row g-4">
-                    <!-- Ciclo For para inmuebles -->
+
         {% for solicitud in solicitudes %}
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="property-item rounded overflow-hidden">
@@ -64,8 +61,6 @@
                 <li>No hay solicitudes emitidas</li>
             </div>
         {% endfor %}
-                </div>
-            </div>
 
         </div>
     </div>

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% load static %} 
 
 {% if user.tipo_usuario == 'arrendador' %}
@@ -12,7 +13,7 @@
                     <span class="section-heading-upper">Bienvenid@</span>
                     <span class="section-heading-lower">{{ user.username }}</span>
                     <br>
-                    <span class="section-heading-lower">Dashboard - Arrendador</span>
+                    <span class="section-heading-lower">Dashboard - {{ user.tipo_usuario }}</span>
                 </h2>
             </div>
         </div>
@@ -56,21 +57,17 @@
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
-                    <!-- Ciclo For para inmuebles -->
 
-                    {% for inm in inmuebles %}
+{% for inm in inmuebles %}
 
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                {% comment %} Imagenes desde tabla Imagen {% endcomment %}
-
                                 <a href="{% url "detalle_inmueble" inm.id %}">
-                                    <img class="img-fluid" src="{{ inm.imagen.url }}" alt="" />
+                                    <img class="img-fluid" src="{{ inm.imagen.url }}" alt="" style="width: 100vw; height: 30vh;" />
                                 </a>
-
                                 <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                    Arriendo
+                                    For Rent
                                 </div>
                                 <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                     {{ inm.tipo_inmueble }}
@@ -78,55 +75,25 @@
                             </div>
                             <div class="p-4 pb-0">
                                 <h5 class="text-primary mb-3">
-                                    $ {{ inm.precio_mensual_arriendo }}.-
+                                    $ {{ inm.precio_mensual_arriendo |floatformat:0 | intcomma }}
                                 </h5>
-                                <a class="d-block h5 mb-2" href="">{{ inm.nombre }}</a>
-                                <p>
-                                    <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                    {{ inm.direccion}}, {{ inm.comuna.name }}
-                                </p>
+                                <a class="d-block h5 mb-2" href="{% url "detalle_inmueble" inm.id %}">
+                                    {{ inm.nombre }}
+                                </a>
+                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ inm.direccion}}, {{ inm.comuna.name }}</p>
                             </div>
                             <div class="d-flex border-top">
-                                <small class="flex-fill text-center border-end py-2">
-                                    <i class="fa fa-ruler-combined text-primary me-2">{{inm.m2_totales}}</i>{{inm.precio }}
-                                </small>
                                 <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-bed text-primary me-2"></i>
-                                        {{ inm.cantidad_habitaciones }}
-                                </small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>
-                                    {{ inm.banos}}
-                                </small>
+                                        class="fa fa-ruler-combined text-primary me-2"></i>{{inm.m2_totales |floatformat:0 }} Mts2</small>
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-bed text-primary me-2"></i>{{ inm.cantidad_habitaciones}} Hab.</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>{{inm.cantidad_banos}}
+                                    Baños</small>
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
+{% endfor %}
                 </div>
-
-{% comment %} solicitudes {% endcomment %}
-
-                <div class="row g-4">
-
-                    <!-- Ciclo For para solicitudes -->
-                    {% for solicitud in solicitudes %}
-
-                    <div class="card mb-3 {% if solicitud.estado == 'ACEPTADO' %}bg-success
-                        {% elif solicitud.estado == 'PENDIENTE' %}bg-warning
-                        {% elif solicitud.estado == 'RECHAZADO' %}bg-danger
-                        {% else %}bg-secondary
-                        {% endif %}">
-                    </div>
-
-                    <div class="card-header">{{solicitud.estado}}</div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ solicitud.arrendatario }}</h5>
-                        <P>{{solicitud.mensaje}}</P>
-                    </div>
-                    
-                    {% endfor %}
-                </div>
-
             </div>
         </div>
     </div>

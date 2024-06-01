@@ -1,9 +1,9 @@
 from django import forms
 from .models import Usuario, Inmueble, SolicitudArriendo
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+
 
 #Formulario Creacion de Usuario
 class CustomUserCreationForm(UserCreationForm):
@@ -68,13 +68,21 @@ class SolicitudArriendoForm(forms.ModelForm):
         self.helper.add_input(Submit('submit', 'Enviar'))   
 
 
-class CustomUserChangeForm(UserChangeForm):
+class UsuarioEditForm(UserChangeForm):
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'email', 'telefono', 'direccion']
-    
+        fields = ['username', 'first_name', 'last_name', 'direccion', 'telefono', 'email']
+
     def __init__(self, *args, **kwargs):
-        super(UserChangeForm).__init__(*args, **kwargs)
+        super(UsuarioEditForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Enviar'))
+        self.helper.add_input(Submit('submit', 'Guardar cambios'))
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Cambiar Contraseña'))

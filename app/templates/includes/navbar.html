@@ -23,7 +23,27 @@
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="{% url "welcome" %}" class="dropdown-item">Lista Propiedades</a>
                         <a href="{% url "crear_inmueble" %}" class="dropdown-item">Crear Inmueble</a>
-                        <a href="{% url "solicitudes_arrendador" %}" class="dropdown-item">Solicitudes</a>
+                        <a href="{% url "solicitudes_arrendador" %}" class="dropdown-item">Solicitudes Recibidas</a>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if user.is_authenticated and user.tipo_usuario == 'ARRENDATARIO' %}
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Propiedades</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="{% url "welcome" %}" class="dropdown-item">Lista Propiedades</a>
+                        <a href="{% url "solicitudes_arrendatario" %}" class="dropdown-item">Solicitudes Emitidas</a>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Usuario</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="{% url "editar_usuario" %}" class="dropdown-item">Actualizar Datos</a>
+                        <a href="{% url "cambiar_contrasena" %}" class="dropdown-item">Editar contraseña</a>
                     </div>
                 </div>
                 {% endif %}

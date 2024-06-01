@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from .models import Inmueble, Comuna, Region, SolicitudArriendo
-from .forms import CustomUserCreationForm, InmuebleForm, CustomUserChangeForm, SolicitudArriendoForm
+from .models import *
+from .forms import *
 from django.contrib import messages
+
 
 # Create your views here.
 
@@ -73,6 +74,12 @@ def solicitudes_arrendador(request):
         # Redirigir a otra página si el usuario no es un arrendador
         return redirect('indice')
 
+#Solicitudes Arrendatario
+@login_required
+def solicitudes_arrendatario(request):
+    if request.user.tipo_usuario == 'ARRENDATARIO':
+        solicitudes = SolicitudArriendo.objects.filter(arrendatario=request.user)
+    return render(request, 'solicitudes_arrendatario.html', {'solicitudes': solicitudes})
 
 #Crear Inmueble
 @login_required
@@ -97,7 +104,7 @@ def actualizar_inmueble(request, id):
         form = InmuebleForm(request.POST, request.FILES, instance=inmueble)
         if form.is_valid():
             form.save()
-            return redirect('welcome',pk=inmueble.id)
+            return redirect('welcome')
     else:
         form = InmuebleForm(instance=inmueble)
     return render(request, 'registration/actualizar_inmueble.html', {'form': form})
@@ -112,8 +119,7 @@ def eliminar_inmueble(request, id):
     else:
         return render(request,'registration/eliminar_inmueble.html', {'inmueble':inmueble} )
 
-
-#Muestra inmuebles segun logeo
+#Muestra inmuebles segun login
 @login_required
 def welcome(request):
     if request.user.tipo_usuario == 'ARRENDATARIO':
@@ -132,25 +138,10 @@ def welcome(request):
     
     elif request.user.tipo_usuario == 'ARRENDADOR':
         # Obtener las solicitudes recibidas por el arrendador
-        solicitudes_recibidas = SolicitudArriendo.objects.filter(inmueble__propietario=request.user)
+        solicitudes_enviadas = SolicitudArriendo.objects.filter(inmueble__propietario=request.user)
         # Obtener los inmuebles del arrendador
         inmuebles = Inmueble.objects.filter(propietario=request.user)
-        return render(request, 'welcome_arrendador.html', {'solicitudes_recibidas': solicitudes_recibidas, 'inmuebles': inmuebles})
-
-
-@login_required
-def actualizar_usuario(request):
-    if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, instance=request.user)
-        print(form)
-        if form.is_valid():
-            form.save()
-            messages.success(request, '¡Los datos del usuario han sido actualizados!')
-            return redirect('welcome') 
-    else:
-        form = CustomUserChangeForm(instance=request.user)
-    return render(request, 'perfil.html', {'form': form})
-
+        return render(request, 'welcome_arrendador.html', {'solicitudes_enviadas': solicitudes_enviadas, 'inmuebles': inmuebles})
 
 @login_required
 def cambiar_estado_solicitud(request, solicitud_id):
@@ -160,4 +151,35 @@ def cambiar_estado_solicitud(request, solicitud_id):
             nuevo_estado = request.POST.get('nuevo_estado')
             solicitud.estado = nuevo_estado
             solicitud.save()
+    messages.success(request, '¡La solicitud a sido procesada!')
     return redirect('solicitudes_arrendador')
+
+#Actualizar Usuario
+@login_required
+def editar_usuario(request):
+    if request.method == 'POST':
+        form = UsuarioEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('welcome')
+    else:
+        form = UsuarioEditForm(instance=request.user)
+
+    return render(request, 'perfil.html', {'form': form})
+
+#Actualizar Contrasena
+@login_required
+def cambiar_contrasena(request):
+    if request.method == 'POST':
+        form = CustomPasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Mantener al usuario autenticado después de cambiar la contraseña
+            messages.success(request, '¡Tu contraseña ha sido cambiada exitosamente!')
+            return redirect('welcome')  # Redirige a una página de perfil u otra página relevante
+        else:
+            messages.error(request, 'Por favor corrige los errores a continuación.')
+    else:
+        form = CustomPasswordChangeForm(user=request.user)
+
+    return render(request, 'registration/cambiar_contrasena.html', {'form': form})

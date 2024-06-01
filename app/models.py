@@ -51,8 +51,8 @@ class Comuna(models.Model):
 class Usuario(AbstractUser):
     #Propiedades personzalizadas
     TIPO_USER_CHOICES = [
-        ('arrendador', 'arrendador'),
-        ('arrendatario', 'arrendatario'),
+        ('ARRENDADOR', 'arrendador'),
+        ('ARRENDATARIO', 'arrendatario'),
     ]
 
     # nombre = models.CharField(max_length=50)
@@ -69,9 +69,9 @@ class Usuario(AbstractUser):
 
 class Inmueble(models.Model):
     TIPO_INMUEBLE_CHOICES = [
-        ('casa', 'Casa'),
-        ('departamento', 'Departamento'),
-        ('parcela', 'Parcela'),
+        ('CASA', 'Casa'),
+        ('DEPARTAMENTO', 'Departamento'),
+        ('PARCELA', 'Parcela'),
     ]
 
     nombre = models.CharField(max_length=200,null=False, blank=False)
@@ -96,15 +96,15 @@ class Inmueble(models.Model):
 
 class SolicitudArriendo(models.Model):
     TIPO_ESTADO_CHOICES = [
-        ('pendiente','Pendiente'),
-        ('aceptado','Aceptado'),
-        ('rechazado','Rechazado'),
+        ('PENDIENTE','Pendiente'),
+        ('ACEPTADO','Aceptado'),
+        ('RECHAZADO','Rechazado'),
     ]
 
     arrendatario = models.ForeignKey(Usuario, verbose_name='Usuario', on_delete=models.CASCADE)
     inmueble = models.ForeignKey(Inmueble, on_delete=models.CASCADE)
     mensaje = models.TextField(blank=True)
-    estado = models.CharField(choices=TIPO_ESTADO_CHOICES, default='Pendiente')
+    estado = models.CharField(choices=TIPO_ESTADO_CHOICES, default='PENDIENTE')
 
     def __str__(self):
         return f"Solicitud de {self.inmueble.nombre} por {self.arrendatario.first_name} {self.arrendatario.last_name} "
