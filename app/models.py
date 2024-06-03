@@ -107,4 +107,14 @@ class SolicitudArriendo(models.Model):
     estado = models.CharField(choices=TIPO_ESTADO_CHOICES, default='PENDIENTE')
 
     def __str__(self):
-        return f"Solicitud de {self.inmueble.nombre} por {self.arrendatario.first_name} {self.arrendatario.last_name} "
+        return f"Solicitud de {self.inmueble.nombre} por {self.arrendatario.first_name} {self.arrendatario.last_name}"
+
+class ContactoForm(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Nombre', null=False, blank=False)
+    last_name = models.CharField(max_length=100, verbose_name='Apellidos', null=False, blank=False)
+    phone = PhoneNumberField(verbose_name='Telefono de Contacto', null=False, blank=False)
+    email = models.EmailField(max_length=254, null=False, blank=False)
+    message = models.TextField(verbose_name='Mensaje')
+
+    def __str__(self):
+        return f"Mensaje de {self.name}, correo: {self.email}"

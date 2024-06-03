@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Usuario, Inmueble, Region, Comuna, SolicitudArriendo
+from app.models import Usuario, Inmueble, Region, Comuna, SolicitudArriendo, ContactoForm
 from django.contrib.auth.admin import UserAdmin
 
 admin.site.site_header = 'Administracion Sitio Arriendos'
@@ -21,3 +21,4 @@ admin.site.register(Inmueble)
 admin.site.register(Region)
 admin.site.register(Comuna)
 admin.site.register(SolicitudArriendo)
+admin.site.register(ContactoForm)

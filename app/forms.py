@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario, Inmueble, SolicitudArriendo
+from .models import Usuario, Inmueble, SolicitudArriendo, ContactoForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -55,7 +55,7 @@ class InmuebleForm(forms.ModelForm):
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Enviar'))
 
-
+#Formulario de arriendo
 class SolicitudArriendoForm(forms.ModelForm):
     class Meta:
         model = SolicitudArriendo
@@ -67,7 +67,7 @@ class SolicitudArriendoForm(forms.ModelForm):
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Enviar'))   
 
-
+#Formulario edicion de usuario
 class UsuarioEditForm(UserChangeForm):
     class Meta:
         model = Usuario
@@ -79,7 +79,7 @@ class UsuarioEditForm(UserChangeForm):
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Guardar cambios'))
 
-
+#Formulario cambio de password
 class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
@@ -87,7 +87,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Cambiar Contraseña'))
 
-
+#Cambiar estado de solicitud de arriendo
 class CambiarEstadoSolicitudForm(forms.ModelForm):
     class Meta:
         model = SolicitudArriendo
@@ -101,3 +101,21 @@ class CambiarEstadoSolicitudForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Cambiar Estado'))
+
+#Formulario de contacto
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactoForm
+        fields = [
+            'name',
+            'last_name',
+            'phone', 
+            'email',
+            'message'
+        ]
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Enviar'))

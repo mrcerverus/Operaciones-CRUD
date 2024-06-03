@@ -159,7 +159,6 @@ def welcome(request):
 
         return render(request, 'welcome_arrendador.html', context)
 
-
 #cambiar estado de solicitud
 @login_required
 def cambiar_estado_solicitud(request, id):
@@ -202,3 +201,15 @@ def cambiar_contrasena(request):
         form = CustomPasswordChangeForm(user=request.user)
 
     return render(request, 'registration/cambiar_contrasena.html', {'form': form})
+
+#Formulario de Contacto
+def formulario_contacto(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Su mensaje fue enviado con exito')
+            return redirect('indice')
+    else:
+        form = ContactForm()
+    return render(request, 'registration/contacto.html', {'form': form})

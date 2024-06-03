@@ -1,0 +1,13 @@
+[
+    {
+        "model": "app.contactoform",
+        "pk": 1,
+        "fields": {
+            "name": "Ariel",
+            "last_name": "Villarreal",
+            "phone": "+56985084650",
+            "email": "ariel@gmail.com",
+            "message": "esto es una prueba"
+        }
+    }
+]

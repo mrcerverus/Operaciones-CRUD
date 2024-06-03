@@ -38,7 +38,7 @@ urlpatterns = [
     path('editar_usuario/', editar_usuario, name='editar_usuario'),
     path('password/', cambiar_contrasena, name='cambiar_contrasena'),
     path('cambiar_estado_solicitud/<int:id>/', cambiar_estado_solicitud, name='cambiar_estado_solicitud'),
-
+    path('formulario_contacto/',formulario_contacto, name='formulario_contacto'),
 ]
 
 #para cargar imagenes desde base de datos

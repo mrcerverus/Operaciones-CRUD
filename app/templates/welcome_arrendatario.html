@@ -21,6 +21,42 @@
 
 {% block 'content' %}
 
+<!-- Search Start -->
+<div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+    <form class="container" method="GET" action="{% url 'welcome' %}">
+        <div class="row g-2">
+            <div class="col-md-10">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <select name="region" id="region" class="form-select border-0 py-3" onchange="filterComunas()">
+                                <option value="">Todas las regiones</option>
+                                {% for region in regiones %}
+                                <option value="{{ region.id }}" {% if region.id|stringformat:"s" == request.GET.region %}selected{% endif %}>
+                                    {{ region.name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="comuna" id="comuna" class="form-select border-0 py-3">
+                                <option value="">Todas las comunas</option>
+                                {% for comuna in comunas %}
+                                <option value="{{ comuna.id }}" data-region="{{ comuna.region.id }}" {% if comuna.id|stringformat:"s" == request.GET.comuna %}selected{% endif %}>
+                                    {{ comuna.name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-dark border-0 w-100 py-3">Filtrar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Search End -->
+
 <!-- Property List Start -->
 <div class="container-xxl py-5">
     <div class="container">
@@ -33,51 +69,12 @@
             </div>
         </div>
 
-        <!-- Filter Form -->
-        <div class="row g-0 gx-5 align-items-end">
-            <div class="col-lg-6">
-
-                <!-- Filter Form -->
-                <form method="GET" action="{% url 'welcome' %}">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <select name="region" id="region" class="form-control" onchange="filterComunas()">
-                                <option value="">Todas las regiones</option>
-                                {% for region in regiones %}
-                                <option value="{{ region.id }}" {% if region.id|stringformat:"s" == request.GET.region %}selected{% endif %}>
-                                    {{ region.name }}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <select name="comuna" id="comuna" class="form-control">
-                                <option value="">Todas las comunas</option>
-                                {% for comuna in comunas %}
-                                <option value="{{ comuna.id }}" data-region="{{ comuna.region.id }}" {% if comuna.id|stringformat:"s" == request.GET.comuna %}selected{% endif %}>
-                                    {{ comuna.name }}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary">Filtrar</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- End Filter Form -->
-
-            </div>
-        </div>
-        <!-- End Filter Form -->
-
+<!-- listado de propiedades -->
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
                     <!-- Ciclo For para inmuebles -->
-
-{% for inm in inmuebles %}
-
+                    {% for inm in inmuebles %}
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
@@ -112,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-{% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
